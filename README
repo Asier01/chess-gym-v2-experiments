@@ -1,0 +1,16 @@
+*todo*
+
+Open python3 venv with $source .venv/bin/activate
+
+Dependencies:
+	-Python3
+		-chess gymnasium numpy cairosvg torch pillow matplotlib IPython
+		-chess-gym-v2
+	-SimpleBaselines
+		-UBC_GameIntelligence
+	-StableBaselines3
+		-stable-baselines3[extra]
+	-SampleFactory
+		-sample-factory 
+	-RLlib
+		-ray[rllib]	
