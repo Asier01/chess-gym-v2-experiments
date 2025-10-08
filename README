@@ -6,6 +6,7 @@ Dependencies:
 	-Python3
 		-chess gymnasium numpy cairosvg torch pillow matplotlib IPython
 		-chess-gym-v2
+		-PyQt6 #For rendering
 	-SimpleBaselines
 		-UBC_GameIntelligence
 	-StableBaselines3
