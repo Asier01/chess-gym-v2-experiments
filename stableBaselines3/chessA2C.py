@@ -8,7 +8,7 @@ env = gym.make("Chess-v0", render_mode="human", observation_mode="piece_map")
 
 #Try to get a list of legal actions for masking (i think not possible on A2C) | MaskedPPO seems to be a thing on AB3 but cant import it
 #Cant access the function
-env._get_legal_moves_index()
+#env._get_legal_moves_index()
 
 #create and train the model
 #Currently unable to trains as illegal moves are chosen as actions

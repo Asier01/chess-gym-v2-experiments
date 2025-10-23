@@ -15,7 +15,7 @@ import chess_gym
 plt.style.use('ggplot')
 
 # Hyperparameters
-num_episodes = 500
+num_episodes = 100000
 seed = 42
 
 # Create the environment
