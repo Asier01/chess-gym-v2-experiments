@@ -4,7 +4,7 @@ from stable_baselines3 import DQN
 
 env = gym.make("Chess-v0", render_mode="human", observation_mode="piece_map")
 
-model = DQN("MlpPolicy", env, verbose=1)
+model = DQN("MlpPolicy", env, verbose=1, exploration_fraction=0.1, exploration_initial_eps=1)
 model.learn(total_timesteps=10000, log_interval=10)
 
 #model.save("dqn_chess")

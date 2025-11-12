@@ -15,11 +15,11 @@ import chess_gym
 plt.style.use('ggplot')
 
 # Hyperparameters
-num_episodes = 100000
-seed = 42
+num_episodes = 500000
+seed = 3485
 
 # Create the environment
-env = gym.make('Chess-v0', render_mode='human', observation_mode='piece_map')
+env = gym.make('Chess-v0', render_mode='human', observation_mode='piece_map', logging = True)
 
 # Analyze the environment
 print('Observation space:', env.observation_space)
@@ -57,20 +57,25 @@ agent = DeterministicDQN_RL_Agent(
 
 #env.reset()
 #env.render()
-
-for episode in range(num_episodes):
-
+terminated_episodes = []
+term_episode_count=0
+steps_per_episode = []
+episode = 0
+#for episode in range(num_episodes):
+while(episode<num_episodes):
+    episode+=1
     agent.reset_env(seed=seed)
-
     # Play the game
     agent.play(max_steps=5000, seed=seed)
-
     # Print some reporting
     # agent.reporting.print_short_report()
     # agent.reporting.print_report()
 
     if agent.current_state.terminated or agent.current_state.truncated:
+        term_episode_count+=1
+        terminated_episodes.append(term_episode_count)
         steps_total.append(agent.current_state.step )
+        steps_per_episode.append(agent.current_state.step)
         mean_reward_100 = sum(steps_total[-100:]) / min(len(steps_total), 100)
         rewards_total.append(agent.final_state.cumulative_reward)
         egreedy_total.append(agent.egreedy)
@@ -100,6 +105,14 @@ for episode in range(num_episodes):
 
 # Close the environment
 env.close()
+
+plt.plot(terminated_episodes)
+plt.title("terminated episodes vs iterations")
+plt.show()
+
+plt.plot(steps_per_episode)
+plt.title("Steps per episode")
+plt.show()
 
 # Print the results
 if solved_after > 0:
