@@ -39,6 +39,7 @@ Dependencies:
 		-UBC_GameIntelligence
 	-StableBaselines3
 		-stable-baselines3[extra]
+		-sb3_contrib
 	-SampleFactory
 		-sample-factory 
 	-RLlib
