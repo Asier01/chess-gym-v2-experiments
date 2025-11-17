@@ -2,6 +2,34 @@
 
 Open python3 venv with $source .venv/bin/activate
 
+The enviroment takes the next parameters:
+	- render_mode -> 
+			- 'rgb_array' -> returns an array of rgb values for the current board state 
+			- 'human' -> renders the current board state as a plot
+			- 'training' -> renders and does nothing
+
+	- observation_mode ->
+			- 'rgb_array' -> makes the observation space a box of rgb values for the whole board 
+			- 'piece_map' -> makes the observation space an 8x8 array of pieces
+
+	- claim_draw -> 
+			- True/False -> check for fifty-move rule or threefold repetition each step
+
+	- render_steps -> 
+			- True/False -> render the board every given number of steps
+
+	- steps_per_render ->
+			- Int -> the number of steps per rendering of the board
+
+	- reward_type -> 
+			- 'sparse' -> only apply reward at the end of an episode 
+			- 'dense' ->  apply rewards at the end of every step
+
+	- use_eval ->
+			- 'stockfish' -> use the stockfish chess engine for evaluation of the intermediate rewards
+					#TODO - add path to stockfish engine as a variable for the user to enter
+			- 'material' -> use a simpler material based evaluation for intermediate rewards
+
 Dependencies:
 	-Python3
 		-chess gymnasium numpy cairosvg torch pillow matplotlib IPython
