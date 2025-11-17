@@ -1,5 +1,10 @@
 import gymnasium as gym
 import chess_gym
+import matplotlib.pyplot as plt
+
+from stable_baselines3.common.monitor import Monitor
+from stable_baselines3.common.results_plotter import plot_results
+from stable_baselines3.common import results_plotter
 
 from sb3_contrib import MaskablePPO
 from sb3_contrib.common.wrappers import ActionMasker
@@ -11,23 +16,31 @@ def mask_fn(env):
 
 
 #Initialize enviroment
-env = gym.make("Chess-v0", render_mode="human", observation_mode="piece_map", render_steps=False, steps_per_render = 10)
+env = gym.make("Chess-v0", render_mode="human", observation_mode="piece_map", render_steps=False, steps_per_render = 1, use_eval="stockfish")
 #env = ChessEnv()
 
 #Wrap the enviroment
 env = ActionMasker(env, mask_fn)
 
+log_dir = "."
+env = Monitor(env, log_dir)
 
-model = MaskablePPO("MlpPolicy", env, verbose=2)
+model = MaskablePPO("MlpPolicy", env, verbose=2, n_steps=256)
 
-model.learn(total_timesteps=50000, log_interval=10)
+model.learn(total_timesteps=300, log_interval=10)
+
+plot_results([log_dir], 20_000, results_plotter.X_EPISODES, "MaskedPPO Chess")
+plt.show()
 
 obs, info = env.reset()
 
-for i in range(10):
+
+'''
+for i in range(100):
     action, _states = model.predict(obs, deterministic=True)
     obs, reward, terminated, truncated, info = env.step(action)
+    print(reward)
     if terminated or truncated:
         obs, info = env.reset()
-
+'''
 
