@@ -16,7 +16,7 @@ def mask_fn(env):
 
 
 #Initialize enviroment
-env = gym.make("Chess-v0", render_mode="human", observation_mode="piece_map", render_steps=True, steps_per_render = 1, reward_type = "dense" , use_eval="stockfish")
+env = gym.make("Chess-v0", render_mode="human", observation_mode="piece_map", render_steps=True, steps_per_render = 1, reward_type = "dense" , use_eval="stockfish", rival_agent="human")
 #env = ChessEnv()
 
 #Wrap the enviroment
@@ -27,7 +27,7 @@ env = Monitor(env, log_dir)
 
 model = MaskablePPO("MlpPolicy", env, verbose=2, n_steps=256)
 
-model.learn(total_timesteps=250000, log_interval=10)
+model.learn(total_timesteps=150000, log_interval=10)
 
 plot_results([log_dir], 20_000, results_plotter.X_EPISODES, "MaskedPPO Chess")
 plt.show()

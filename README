@@ -30,6 +30,14 @@ The enviroment takes the next parameters:
 					#TODO - add path to stockfish engine as a variable for the user to enter
 			- 'material' -> use a simpler material based evaluation for intermediate rewards
 
+	- rival_agent ->
+			- 'engine' -> moves not chosen by the agent are chosen by the engine
+
+			- 'random' -> the rival players moves are chosen randomly
+
+			- 'human' -> make the agent play against a human, requires the human to input the move
+				     in UCI standard format, e.g. 'e8e6'
+
 Dependencies:
 	-Python3
 		-chess gymnasium numpy cairosvg torch pillow matplotlib IPython
