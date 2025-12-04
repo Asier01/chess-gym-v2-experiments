@@ -37,6 +37,8 @@ The enviroment takes the next parameters:
 
 			- 'human' -> make the agent play against a human, requires the human to input the move
 				     in UCI standard format, e.g. 'e8e6'
+	- engine_time_limit ->
+			- float -> the time limit in seconds for the chess engine to think its next move against the agent
 
 Dependencies:
 	-Python3
