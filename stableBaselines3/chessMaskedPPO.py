@@ -2,9 +2,13 @@ import gymnasium as gym
 import chess_gym
 import matplotlib.pyplot as plt
 
-from stable_baselines3.common.monitor import Monitor
-from stable_baselines3.common.results_plotter import plot_results
-from stable_baselines3.common import results_plotter
+import MaskDebugCallback as mdc
+import RolloutMaskInspector as rmi
+import MaskInspectionCallback as mic
+
+#from stable_baselines3.common.monitor import Monitor
+#from stable_baselines3.common.results_plotter import plot_results
+#from stable_baselines3.common import results_plotter
 
 from sb3_contrib import MaskablePPO
 from sb3_contrib.common.wrappers import ActionMasker
@@ -22,15 +26,15 @@ env = gym.make("Chess-v0", render_mode="training", observation_mode="piece_map",
 #Wrap the enviroment
 env = ActionMasker(env, mask_fn)
 
-log_dir = "."
-env = Monitor(env, log_dir)
+#log_dir = "."
+#env = Monitor(env, log_dir)
 
-model = MaskablePPO("MlpPolicy", env, verbose=2, n_steps=100, learning_rate=0.003)
+model = MaskablePPO("MlpPolicy", env, verbose=2, learning_rate=0.0003 , n_steps= 10)
 
-model.learn(total_timesteps=150000, log_interval=1)
+model.learn(total_timesteps=150000, log_interval=10)  #,callback = mic.MaskInspectionCallback())
 
-plot_results([log_dir], 20_000, results_plotter.X_EPISODES, "MaskedPPO Chess")
-plt.show()
+#plot_results([log_dir], 20_000, results_plotter.X_EPISODES, "MaskedPPO Chess")
+#plt.show()
 
 obs, info = env.reset()
 
