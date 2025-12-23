@@ -29,7 +29,7 @@ env = ActionMasker(env, mask_fn)
 #log_dir = "."
 #env = Monitor(env, log_dir)
 
-model = MaskablePPO("MlpPolicy", env, verbose=2, learning_rate=0.0003 , n_steps= 10)
+model = MaskablePPO("MlpPolicy", env, verbose=2, learning_rate=0.003 , n_steps= 10)
 
 model.learn(total_timesteps=150000, log_interval=10)  #,callback = mic.MaskInspectionCallback())
 
