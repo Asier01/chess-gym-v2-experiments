@@ -20,7 +20,7 @@ def mask_fn(env):
 
 
 #Initialize enviroment
-env = gym.make("Chess-v0", render_mode="training", observation_mode="piece_map", render_steps=True, steps_per_render = 1, reward_type = "dense" , use_eval="stockfish", rival_agent="engine", engine_time_limit = 0.000001, claim_draw=False)
+env = gym.make("Chess-v0", render_mode="training", observation_mode="piece_map", render_steps=True, steps_per_render = 1, reward_type = "sparse" , use_eval="stockfish", rival_agent="random", engine_time_limit = 0.000001, claim_draw=False)
 #env = ChessEnv()
 
 #Wrap the enviroment
@@ -29,9 +29,9 @@ env = ActionMasker(env, mask_fn)
 #log_dir = "."
 #env = Monitor(env, log_dir)
 
-model = MaskablePPO("MlpPolicy", env, verbose=2, learning_rate=0.003 , n_steps= 10)
+model = MaskablePPO("MlpPolicy", env, verbose=2, learning_rate=0.05 , n_steps= 100)
 
-model.learn(total_timesteps=150000, log_interval=10)  #,callback = mic.MaskInspectionCallback())
+model.learn(total_timesteps=1500000, log_interval=10)  #,callback = mic.MaskInspectionCallback())
 
 #plot_results([log_dir], 20_000, results_plotter.X_EPISODES, "MaskedPPO Chess")
 #plt.show()
