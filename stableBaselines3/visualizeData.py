@@ -1,13 +1,18 @@
 import matplotlib.pyplot as plt
-import numpy
+import os
+
 
 episodeLength = []
 averageRewards = []
 fig, (rw, leng) = plt.subplots(2,1)
 
+current_path = os.path.dirname(__file__)
 #Get arrays of data out of log file
 filename = input("Input log data to plot - ")
-with open(filename) as file:
+
+relative_path = current_path + "/"+ filename
+
+with open(relative_path) as file:
 	for line in file:
 		num = ""
 		for char in line:

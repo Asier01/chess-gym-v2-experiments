@@ -49,7 +49,7 @@ Dependencies:
 		-UBC_GameIntelligence
 	-StableBaselines3
 		-stable-baselines3[extra]
-		-sb3_contrib
+		-sb3_contrib - fork by Sarthak-Dayal
 	-SampleFactory
 		-sample-factory 
 	-RLlib
