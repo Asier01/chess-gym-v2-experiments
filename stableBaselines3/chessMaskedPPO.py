@@ -20,7 +20,7 @@ def mask_fn(env):
 
 
 #Initialize enviroment
-env = gym.make("Chess-v0", render_mode="training", observation_mode="piece_map", render_steps=True, steps_per_render = 1, reward_type = "sparse" , use_eval="stockfish", rival_agent="random", engine_time_limit = 0.000001, claim_draw=False)
+env = gym.make("Chess-v0", render_mode="training", observation_mode="piece_map", render_steps=True, steps_per_render = 1, reward_type = "sparse" , use_eval="stockfish", rival_agent="engine", engine_time_limit = 0.00000001, claim_draw=False)
 #env = ChessEnv()
 
 #Wrap the enviroment
