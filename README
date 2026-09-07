@@ -39,6 +39,8 @@ The enviroment takes the next parameters:
 				     in UCI standard format, e.g. 'e8e6'
 	- engine_time_limit ->
 			- float -> the time limit in seconds for the chess engine to think its next move against the agent
+	- logging ->
+			- True/False -> whether to log experiment information on a file. Length and reward of each episode are logged.
 
 Dependencies:
 	-Python3
